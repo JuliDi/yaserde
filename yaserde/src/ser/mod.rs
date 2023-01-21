@@ -78,6 +78,8 @@ impl<'de, W: Write> Serializer<W> {
     if let Some(indent_string_value) = &config.indent_string {
       emitter_config = emitter_config.indent_string(indent_string_value.clone());
     }
+    
+    emitter_config.perform_escaping = false;
 
     Self::new(EventWriter::new_with_config(writer, emitter_config))
   }
